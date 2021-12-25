@@ -3,6 +3,7 @@ const express = require('express') // require is install basically
 const app = express() // kinda by default 
 const cors = require('cors')
 app.use(cors())
+app.use(express.static('build'))
 let persons = [
   { 
     "id": 1,
