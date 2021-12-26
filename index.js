@@ -7,7 +7,7 @@ app.use(express.static('build'))
 let persons = [
   { 
     "id": 1,
-    "name": "Arto Hellas", 
+    "name": "James Gan", 
     "number": "040-123456"
   },
   { 
