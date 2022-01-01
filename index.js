@@ -17,14 +17,14 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/info', (request, response) => { // by default when you open the link is auto get. basically backend is saying what happens what to do when front end give all these requests
   response.send(
-    `<p>Phonebook has info for ${persons.length} people</p>
+    `<p>Phonebook has info for ${Person.length} people</p>
     <p>${new Date()}</p>
     `)
 })
 
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  const person = persons.find(person => person.id === id)
+  const person = Person.find(person => person.id === id)
 
   if (person) {
     response.json(person)
@@ -35,7 +35,7 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  persons = persons.filter(person => person.id != id)
+  Person.filter(person => person.id != id)
 
   response.status(204).end()
 })
@@ -44,8 +44,8 @@ app.use(express.json())
 
 
 app.post('/api/persons', (request, response) => {
-  const maxID = persons.length > 0 
-        ? Math.max(...persons.map(n => n.id))
+  const maxID = Person.length > 0 
+        ? Math.max(...Person.map(n => n.id))
         : 0
   const person = request.body
   const name = person.name
@@ -57,13 +57,13 @@ app.post('/api/persons', (request, response) => {
     return response.status(400).json({
       error: 'number missing'
     })
-  } else if (persons.find(person => person.name === name)) {
+  } else if (Person.find(person => person.name === name)) {
     return response.status(400).json({
       error: 'repeated name'
     })
   } else {
     person.id = maxID + 1
-    persons = persons.concat(person)
+    Person = Person.concat(person)
     response.json(person)
   }
 })
@@ -71,7 +71,7 @@ app.post('/api/persons', (request, response) => {
 app.put('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const newPerson = request.body
-  persons = persons.map(person => person.id !== id ? person : newPerson)
+  Person = Person.map(person => person.id !== id ? person : newPerson)
   response.json(newPerson)
 })
 
