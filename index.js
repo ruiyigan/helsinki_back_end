@@ -1,4 +1,5 @@
 const { response } = require('express')
+require('dotenv').config()
 const Person = require('./models/person') // importing model
 // use express
 const express = require('express') // require is install basically 
