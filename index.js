@@ -7,6 +7,32 @@ app.use(express.static('build'))
 // use cors
 const cors = require('cors')
 app.use(cors())
+<<<<<<< HEAD
+=======
+app.use(express.static('build'))
+let persons = [
+  { 
+    "id": 1,
+    "name": "James Gan", 
+    "number": "040-123456"
+  },
+  { 
+    "id": 2,
+    "name": "Ada Lovelace", 
+    "number": "39-44-5323523"
+  },
+  { 
+    "id": 3,
+    "name": "Dan Abramov", 
+    "number": "12-43-234345"
+  },
+  { 
+    "id": 4,
+    "name": "Mary Poppendieck", 
+    "number": "39-23-6423122"
+  }
+]
+>>>>>>> e5eadb9d39b3bb5ded08b75194a66f6487b9214f
 
 app.get('/api/persons', (request, response) => { 
   Person.find({}).then(persons => {
