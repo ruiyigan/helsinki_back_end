@@ -96,7 +96,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     name: body.name,
     number: body.number,
   }
-  Person.findByIdAndUpdate(id, person, { new: true})
+  Person.findByIdAndUpdate(id, person, { new: true}) // We added the optional { new: true }parameter, which will cause our event handler to be called with the new modified document instead of the original. I think affects your returendPerson at the front end. new:true returns the updated one
     .then(updatedPerson => {
       response.json(updatedPerson)
     })
