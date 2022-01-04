@@ -3,19 +3,18 @@ require('dotenv').config()
 
 const url = process.env.mongourl
 
-console.log('connecting to', url)
-
-mongoose.connect(url)
-    .then(result => {
-        console.log('connected to MongoDB')
-    })
-    .catch((error) => {
-        console.log('error connecting to MongDB:', error.message)
-    })
-
 const phonebookSchema = new mongoose.Schema({
-    name: String,
-    number: String,
+    name: {
+        type: String,
+        minLength: 3,
+        required: true
+    },
+    
+    number: {
+        type: String,
+        minLength: 8,
+        required: true
+    }
     })
     
 phonebookSchema.set('toJSON', {
